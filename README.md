@@ -1,4 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Setup your backend Drupal Commerce site.
+
+Visit the BlogPost to check how to do that.
+
+Link to blogpost once it is published
+
+Clone the repo.
+
+https://github.com/Danishkhurshid/NextJS-Drupal-Commerce.git
+
+Run Npm install
+
+Add url to your .env.development file
+
+Add your drupal base url to enviroment file. REACT_APP_API_URL= Here goes your url
 
 ## Getting Started
 
