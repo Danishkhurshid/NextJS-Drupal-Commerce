@@ -1,14 +1,21 @@
 import Image from 'next/image';
 
-const ProductDetail = ({product}) => {
-  console.log(product);
- const {attributes, relationships} = product?.data[0];
- const {body, title} = attributes;
+const ProductDetail = (props) => {
+ const {body} = props.attributes;
+ const {price, sku, variationTitle, colorName, field_images, sizeName, sizes, files} = props;
+  console.log(files);
+  console.log(field_images);
+ // Display images. 
+ const displayImages = () => {
+   
+ }
  
   return (
     <>
-    <div>{attributes?.title}</div>
-    <div>{attributes?.body?.processed}</div>
+    <div>{variationTitle}</div>
+    <div>{sku}</div>
+    <div>{price}</div>
+    <div>{body?.processed}</div>
     </>
   );
 

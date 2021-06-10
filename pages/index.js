@@ -6,10 +6,8 @@ export default function Home ({resultNormalized}) {
 
   // Map over each data item. That has multiple variations
   const displayData = data.map((item)=>{
-    const productTitle = item?.attributes?.title;
     return(
       <>
-      <div>{productTitle}</div>
       <ProductListing item={item} included={included}/>
       </>
     );
