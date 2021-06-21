@@ -1,21 +1,20 @@
-import Image from 'next/image';
+import DisplayImages from './attributes/DisplayImages'
 
 const ProductDetail = (props) => {
  const {body} = props.attributes;
- const {price, sku, variationTitle, colorName, field_images, sizeName, sizes, files} = props;
-  console.log(files);
-  console.log(field_images);
- // Display images. 
- const displayImages = () => {
-   
- }
- 
+ const {price, sku, variationTitle, colorName, field_images, sizeName, sizes, files} = props; 
   return (
     <>
-    <div>{variationTitle}</div>
-    <div>{sku}</div>
-    <div>{price}</div>
-    <div>{body?.processed}</div>
+     <DisplayImages
+        files={files}
+        field_images={field_images}
+      />
+    <div className="w-full">
+      <div>{variationTitle}</div>
+      <div>{sku}</div>
+      <div>{price}</div>
+      <div>{body?.processed}</div>
+    </div>
     </>
   );
 

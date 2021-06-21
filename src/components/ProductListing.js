@@ -15,14 +15,14 @@ const ProductListing = ({item, included}) => {
   const imageId = variation.relationships.field_images.data[0].id;
   const imageFile = included['file--file'][imageId];
   let imageUrl = imageFile.attributes.uri.url;
-  const url = `http://decoupled-drupal:8888${imageUrl}`;
+  const url = `${process.env.DRUPAL_API_URL}${imageUrl}`;
   const productTitle = item?.attributes?.title;
   const hrefValue = `/product/${item.id}`;
  
   return(
     <Link href= {hrefValue}>
       <div className="flex flex-col cursor-pointer">
-        <Image src={url} width="300" height="300" alt="Profile Picture" />
+        <Image src={url} width="300" height="300" alt="Product Picture" />
         <div className="text-lg text-teal">{variationTitle}</div>
         <div className="text-xl">{price}</div>
       </div>

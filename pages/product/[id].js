@@ -10,10 +10,7 @@ export default function Product({ product }) {
   const variationsIncluded = included[variationType];
   const files = included['file--file'];
  
-  console.log(product);
-  // console.log(variations);
-  // console.log(included);
-  // Variation data.
+
   let [defaultVariation] = Object.values(variationsIncluded)
   // price, sku, variation title
   const price = defaultVariation?.attributes?.price?.formatted;
@@ -47,7 +44,7 @@ export default function Product({ product }) {
   
     
   return(
-    <>
+    <div className="flex justify-between">
       <ProductDetail 
         attributes= {attributes}
         relationships = {relationships}
@@ -60,7 +57,7 @@ export default function Product({ product }) {
         sizes = {sizes}
         files = {files}
       />
-    </>
+    </div>
   );
 }
 
