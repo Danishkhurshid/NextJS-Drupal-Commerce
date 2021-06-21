@@ -22,7 +22,7 @@ export default function Home ({resultNormalized}) {
 
 
 export async function getStaticProps() {
-  const data = await jsonapiClient(process.env.REACT_APP_API_URL, 'products');
+  const data = await jsonapiClient(process.env.DRUPAL_API_URL, 'products');
   const resultNormalized = jsonapiNormalize(data);
   return {
     props: {

@@ -57,7 +57,7 @@ export class ApiError extends Error {
 /**
  * An async helper function for making requests to a Drupal backend.
  *
- * @param {string} REACT_APP_API_URL
+ * @param {string} DRUPAL_API_URL
  *  The base url of the backend (Drupal)
  * @param {string} endpoint
  *  The name of the end point you want to use.
@@ -73,7 +73,7 @@ export class ApiError extends Error {
  *  Result of the fetch operation.
  */
 export async function jsonapiClient(
-  REACT_APP_API_URL,
+  DRUPAL_API_URL,
   endpoint,
   { queryString = null, parameters = {}, options = {} } = {},
 ) {
@@ -126,7 +126,7 @@ export async function jsonapiClient(
   }
 
   const data = await fetch(
-    `${REACT_APP_API_URL}${url}${
+    `${DRUPAL_API_URL}${url}${
       queryString
         ? `?${qs.stringify(queryString, { arrayFormat: 'brackets' })}`
         : ''

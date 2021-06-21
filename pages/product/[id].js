@@ -66,7 +66,7 @@ export default function Product({ product }) {
 
 
 export async function getStaticPaths() {
-  const products =  await jsonapiClient(process.env.REACT_APP_API_URL, 'products');
+  const products =  await jsonapiClient(process.env.DRUPAL_API_URL, 'products');
   const paths = products.data.map((product) => {
     return {
       params: {
@@ -81,7 +81,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  let product = await jsonapiClient(process.env.REACT_APP_API_URL, 'product_single', {
+  let product = await jsonapiClient(process.env.DRUPAL_API_URL, 'product_single', {
     parameters: {
       id: params.id,
     },
