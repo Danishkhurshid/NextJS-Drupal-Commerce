@@ -20,12 +20,13 @@ const ProductListing = ({item, included}) => {
   const hrefValue = `/product/${item.id}`;
  
   return(
-    <>
-      <Image src={url} width="300" height="300" alt="Profile Picture" />
-      <div>{productTitle}</div>
-      <Link href= {hrefValue}>{variationTitle}</Link>
-      <div>{price}</div>
-    </>
+    <Link href= {hrefValue}>
+      <div className="flex flex-col cursor-pointer">
+        <Image src={url} width="300" height="300" alt="Profile Picture" />
+        <div className="text-lg text-teal">{variationTitle}</div>
+        <div className="text-xl">{price}</div>
+      </div>
+    </Link>
   ); 
 }
 

@@ -14,9 +14,9 @@ export default function Home ({resultNormalized}) {
   });
 
   return(
-    <>
+    <div className="grid gap-4 grid-cols-4 ">
     {displayData}
-    </>
+    </div>
   );
 }
 
