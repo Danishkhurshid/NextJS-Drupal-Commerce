@@ -1,8 +1,10 @@
+import { useEffect } from 'react'
 import ProductDetail from '../../src/components/ProductDetail';
 import ProductListing from '../../src/components/ProductListing';
 import { jsonapiClient, jsonapiNormalize } from '../../utils/api';
 
 export default function Product({ product }) {
+  
   const {attributes, relationships} = product?.data[0];
   const included = product?.included;
   const variationType = relationships.variations.data[0].type;
@@ -16,7 +18,6 @@ export default function Product({ product }) {
   const price = defaultVariation?.attributes?.price?.formatted;
   const sku = defaultVariation?.attributes?.sku;
   const variationTitle = defaultVariation?.attributes?.title;
-  console.log(defaultVariation);
   //field_images, attribute_size, attribute_color
   
 
@@ -38,7 +39,7 @@ export default function Product({ product }) {
   const sizes = included[sizeType];
   const sizeValue =  sizes ? Object.values(sizes).find(size => size.id === sizeId) : '';
   const defaultSize = sizeValue?.attributes?.name;
-  console.log(defaultSize)
+  // console.log(defaultSize)
   
   // Everytime color changes we need to change images. 
   
@@ -56,6 +57,7 @@ export default function Product({ product }) {
         sizeName = {defaultSize}
         sizes = {sizes}
         files = {files}
+        defaultVariation= {defaultVariation}
       />
     </div>
   );
@@ -65,12 +67,14 @@ export default function Product({ product }) {
 export async function getStaticPaths() {
   const products =  await jsonapiClient(process.env.DRUPAL_API_URL, 'products');
   const paths = products.data.map((product) => {
+    console.log(product.type);
     return {
       params: {
         id: product.id
       }
     }
   });
+
   return {
     paths,
     fallback: false
@@ -83,6 +87,7 @@ export async function getStaticProps({ params }) {
       id: params.id,
     },
   });
+
   product = jsonapiNormalize(product);
   return {
     props: {

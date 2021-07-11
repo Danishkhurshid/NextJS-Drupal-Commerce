@@ -100,23 +100,24 @@ export async function jsonapiClient(
       url = `/jsonapi/products`
       queryString = {
         'filter[id]': parameters.id,
+        'include': 'variations.attribute_color,variations.attribute_size',
         // 'include':'variations,variations.field_images'
         // 'fields[file--file]': 'uri',
         // 'fields[taxonomy_term--product_categories]': 'name',
         // 'fields[taxonomy_term--special_categories]': 'name',
         // 'fields[taxonomy_term--brands]': 'name',
       };
-      //const queryInclude = ['variations', 'variations.field_images', 'field_special_categories', 'field_product_categories', 'field_brand'];
-      const queryInclude = ['variations', 'variations.field_images', 'field_brand'];
-      // const queryVariationFields = ['sku', 'price', 'resolved_price', 'field_images'];
-      const queryVariationFields = [];
-      if (parameters.bundle === 'clothing') {
-        queryInclude.push('variations.attribute_color', 'variations.attribute_size')
-        queryVariationFields.push('attribute_color', 'attribute_size');
-      }
+      // const queryInclude = ['variations', 'variations.field_images', 'field_special_categories', 'field_product_categories', 'field_brand'];
+      const queryInclude = ['variations', 'variations.field_images'];
+      const queryVariationFields = ['sku', 'price', 'resolved_price', 'field_images'];
+      // const queryVariationFields = [];
+      // if (parameters.bundle === 'clothing') {
+      //   queryInclude.push('variations.attribute_color', 'variations.attribute_size')
+      //   queryVariationFields.push('attribute_color', 'attribute_size');
+      // }
       queryString['include'] = queryInclude.join(',');
       // queryString[`fields[commerce_product--${parameters.bundle}]`] = 'title,body,variations,field_special_categories,field_product_categories,field_brand';
-      queryString[`fields[commerce_product_variation--${parameters.bundle}]`] = queryVariationFields.join(',')
+      // queryString[`fields[commerce_product_variation--${parameters.bundle}]`] = queryVariationFields.join(',')
       break;
 
     default:
@@ -124,6 +125,8 @@ export async function jsonapiClient(
       options.headers.Accept = 'application/vnd.api+json';
       break;
   }
+  console.log(queryString);
+
 
   const data = await fetch(
     `${DRUPAL_API_URL}${url}${
