@@ -11,7 +11,7 @@ export default function Cart () {
    let orderData = '';
    let OrderTotal = '';
 
-  if(cartObj) {
+  if(cartObj?.data?.length > 0) {
     const {attributes, relationships } = cartObj.data[0];
     order_items = relationships?.order_items?.data;
     included = cartObj?.included;
@@ -33,30 +33,37 @@ export default function Cart () {
 
   return(
     <div className="flex justify-around	items-baseline">
-      <div>
-        {order_items ?
-          order_items.map((item, index) => {
-            const itemType = item.type;
-            const dataItem = included[itemType][item.id];
-        
-            return (
-              <CartData
-                dataItem= {dataItem}
-                included={included}
-              />
-            );
-          }) : ''
-        }
-      </div>
-      <div className="border-solid border-4 border-light-blue-500 p-4">
-        Order Total:
-        {OrderTotal}
+    {
+      order_items ? (
+      <>
         <div>
-          <button className="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-black rounded mt-4">
-            Checkout
-          </button>
+          {order_items ?
+            order_items.map((item, index) => {
+              const itemType = item.type;
+              const dataItem = included[itemType][item.id];
+          
+              return (
+                <CartData
+                  dataItem= {dataItem}
+                  included={included}
+                />
+              );
+            }) : ''
+          }
         </div>
-      </div>
+        <div className="border-solid border-4 border-light-blue-500 p-4">
+          Order Total:
+          {OrderTotal}
+          <div>
+            <button className="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-black rounded mt-4">
+              Checkout
+            </button>
+          </div>
+        </div>
+      </>
+      )
+      : <div>'Your cart is empty'</div>
+    }
     </div>
   );
 }
