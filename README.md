@@ -2,7 +2,7 @@ Setup your backend Drupal Commerce site.
 
 Visit the BlogPost to check how to do that.
 
-Link to blogpost once it is published
+https://www.qed42.com/insights/coe/javascript/decoupling-drupal-commerce-nextjs
 
 Clone the repo.
 
